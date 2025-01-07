@@ -9,6 +9,30 @@ export function activate(context: vscode.ExtensionContext) {
       provider
     )
   );
+
+  //////////////////////////////////////////////////////////
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(OllamaChatProvider.viewType, () => {
+      const message = "Menu/Title of extension is clicked !";
+      vscode.window.showInformationMessage(message);
+    })
+  );
+
+  // Command has been defined in the package.json file
+  // Provide the implementation of the command with registerCommand
+  // CommandId parameter must match the command field in package.json
+  let openWebView = vscode.commands.registerCommand("chat.refresh", () => {
+    // Display a message box to the user
+    vscode.window.showInformationMessage(
+      'Command " Sidebar View [vscodeSidebar.openview] " called.'
+    );
+  });
+
+  context.subscriptions.push(openWebView);
+
+  //////////////////////////////////////////////////////////
+
   console.log("activated");
 
   console.log('Congratulations, your extension "chat" is now active!');
@@ -41,7 +65,7 @@ class OllamaChatProvider implements vscode.WebviewViewProvider {
     webviewView.webview.html = this.makeHTML(webviewView.webview);
   }
 
-  private makeHTML(webview: vscode.Webview) {
+  private makeHTML(webview: vscode.Webview): string {
     const scriptUri = webview.asWebviewUri(
       vscode.Uri.joinPath(this.extensionUri, "src", "app.js")
     );
@@ -54,6 +78,8 @@ class OllamaChatProvider implements vscode.WebviewViewProvider {
     const styleUri = webview.asWebviewUri(
       vscode.Uri.joinPath(this.extensionUri, "src", "style.css")
     );
+
+    const nonce = getNonce();
 
     return `<!DOCTYPE html>
       <html lang="en">
@@ -78,8 +104,18 @@ class OllamaChatProvider implements vscode.WebviewViewProvider {
           </select>
         </form>    
         <script src="${markedUri}"></script>
-        <script src="${scriptUri}"></script>
+        <script nonce="${nonce}" src="${scriptUri}"></script>
       </body>
       </html>`;
   }
+}
+
+function getNonce() {
+  let text = "";
+  const possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < 32; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
 }

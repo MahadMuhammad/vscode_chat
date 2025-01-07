@@ -9,15 +9,12 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:chat.helloWorld",
+    "onView:chat.chat"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "chat.helloWorld",
-        "title": "Hello World"
-      }
-    ],
     "viewsContainers": {
       "activitybar": [
         {
@@ -30,9 +27,30 @@
     "views": {
       "chat-container": [
         {
+          "type": "webview",
           "id": "chat.chat",
-          "name": "Chat View",
-          "contextualTitle": "Chat"
+          "name": "Dev AI Chat View",
+          "contextualTitle": "Secure Chat"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "chat.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "chat.chat",
+        "title": "Dev AI Chat",
+        "icon": "media/robot.svg"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "chat.chat",
+          "group": "Chat",
+          "when": "view == chat.chat"
         }
       ]
     }
