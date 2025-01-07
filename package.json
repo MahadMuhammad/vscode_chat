@@ -18,12 +18,21 @@
         "title": "Hello World"
       }
     ],
-    "views": {
-      "explorer": [
+    "viewsContainers": {
+      "activitybar": [
         {
-          "type": "webview",
+          "id": "chat-container",
+          "title": "Chat",
+          "icon": "media/robot.svg"
+        }
+      ]
+    },
+    "views": {
+      "chat-container": [
+        {
           "id": "chat.chat",
-          "name": "Mahad Chat"
+          "name": "Chat View",
+          "contextualTitle": "Chat"
         }
       ]
     }

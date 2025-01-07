@@ -56,33 +56,30 @@ class OllamaChatProvider implements vscode.WebviewViewProvider {
     );
 
     return `<!DOCTYPE html>
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8">
-				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				
-				<link href="${resetUri}" rel="stylesheet">
-				<link href="${styleUri}" rel="stylesheet">
-				<title>Ollama Chat</title>
-			</head>
-			<body>
-				<section id="feed">
-					<h3>Hello World! 🤖</h3>
-					<p>I am DevAI and all your chat remains private 🔐</p>
-					<p>How cool is that?</p>
-				</section>
-				
-				<form id="chat">
-					<textarea placeholder="Type your message prompt here..." id="prompt" name="prompt"></textarea>
-					<button type="submit">Send</button>
-					<select id="models" name="model">
-						<option> Select Model </option>
-					</select>
-				</form>    
-
-				<script src="${markedUri}"></script>
-				<script src="${scriptUri}"></script>
-			</body>
-			</html>`;
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="${resetUri}" rel="stylesheet">
+        <link href="${styleUri}" rel="stylesheet">
+        <title>Ollama Chat</title>
+      </head>
+      <body>
+        <section id="feed">
+          <h3>Hello World! 🤖</h3>
+          <p>I am DevAI and all your chat remains private 🔐</p>
+          <p>How cool is that?</p>
+        </section>
+        <form id="chat">
+          <textarea placeholder="Type your message prompt here..." id="prompt" name="prompt"></textarea>
+          <button type="submit">Send</button>
+          <select id="models" name="model">
+            <option> Select Model </option>
+          </select>
+        </form>    
+        <script src="${markedUri}"></script>
+        <script src="${scriptUri}"></script>
+      </body>
+      </html>`;
   }
 }
