@@ -66,6 +66,27 @@ function throttle(func, limit) {
   };
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const chatForm = document.getElementById("chat");
+  const feed = document.getElementById("feed");
+  const clearButton = document.getElementById("clear-button");
+
+  chatForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const prompt = document.getElementById("prompt").value;
+    if (prompt) {
+      const message = document.createElement("p");
+      message.textContent = prompt;
+      feed.appendChild(message);
+      document.getElementById("prompt").value = "";
+    }
+  });
+
+  clearButton.addEventListener("click", function () {
+    feed.innerHTML = "";
+  });
+});
+
 // Draws the chat feed reading from the state
 function drawFeed() {
   $feed.innerHTML = "";

@@ -117,6 +117,7 @@ class OllamaChatProvider implements vscode.WebviewViewProvider {
         <form id="chat">
           <textarea placeholder="Type your message prompt here..." id="prompt" name="prompt"></textarea>
           <button type="submit">Send</button>
+          <button type="button" id="clear-button">Clear</button>
           <select id="models" name="model">
             <option> Select Model </option>
           </select>
