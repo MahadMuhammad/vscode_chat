@@ -31,6 +31,12 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(openWebView);
 
+  context.subscriptions.push(
+    vscode.commands.registerCommand("chat.refreshEntry", () =>
+      provider.refresh()
+    )
+  );
+
   //////////////////////////////////////////////////////////
 
   console.log("activated");
@@ -53,6 +59,18 @@ class OllamaChatProvider implements vscode.WebviewViewProvider {
   private view?: vscode.WebviewView;
 
   constructor(private readonly extensionUri: vscode.Uri) {}
+
+  private _onDidChange: vscode.EventEmitter<
+    vscode.WebviewViewProvider | undefined | void
+  > = new vscode.EventEmitter<undefined | void | vscode.WebviewViewProvider>();
+
+  readonly onDidChange: vscode.Event<
+    vscode.WebviewViewProvider | undefined | void
+  > = this._onDidChange.event;
+
+  refresh(): void {
+    this._onDidChange.fire(undefined);
+  }
 
   public resolveWebviewView(webviewView: vscode.WebviewView) {
     this.view = webviewView;

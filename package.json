@@ -43,6 +43,14 @@
         "command": "chat.chat",
         "title": "Dev AI Chat",
         "icon": "media/robot.svg"
+      },
+      {
+        "command": "chat.refreshEntry",
+        "title": "Refresh",
+        "icon": {
+          "light": "resources/light/refresh.svg",
+          "dark": "resources/dark/refresh.svg"
+        }
       }
     ],
     "menus": {
@@ -50,6 +58,11 @@
         {
           "command": "chat.chat",
           "group": "Chat",
+          "when": "view == chat.chat"
+        },
+        {
+          "command": "chat.refreshEntry",
+          "group": "navigation",
           "when": "view == chat.chat"
         }
       ]
