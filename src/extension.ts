@@ -107,6 +107,25 @@ class OllamaChatProvider implements vscode.WebviewViewProvider {
         <link href="${resetUri}" rel="stylesheet">
         <link href="${styleUri}" rel="stylesheet">
         <title>Ollama Chat</title>
+        <style>
+          #chat {
+            display: flex;
+            flex-direction: column;
+          }
+          #chat textarea {
+            margin-bottom: 10px;
+          }
+          #button-container {
+            display: flex;
+            justify-content: space-between;
+          }
+          #chat button {
+            width: 48%;
+          }
+          #chat select {
+            margin-top: 10px;
+          }
+        </style>
       </head>
       <body>
         <section id="feed">
@@ -116,8 +135,10 @@ class OllamaChatProvider implements vscode.WebviewViewProvider {
         </section>
         <form id="chat">
           <textarea placeholder="Type your message prompt here..." id="prompt" name="prompt"></textarea>
-          <button type="submit">Send</button>
-          <button type="button" id="clear-button">Clear</button>
+          <div id="button-container">
+            <button type="submit">Send</button>
+            <button type="button" id="clear-button">Clear</button>
+          </div>
           <select id="models" name="model">
             <option> Select Model </option>
           </select>
